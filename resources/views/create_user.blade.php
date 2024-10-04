@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Create User</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/create.css') }}">
-    <style>
-        .error {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-}
-        </style>
-</head>
-<body>
+
+@extends('layouts.app')
+
+@section('content')
+<link rel="stylesheet" href="{{ asset('assets/css/create.css') }}">
+<div>
     
     <!-- Form Create User -->
     <form action="{{ url('/user/store') }}" method="POST">
@@ -57,6 +47,7 @@
         <button type="submit">Submit</button>
 
     </form>
+</div>
+@endsection
 
-</body>
-</html>
+

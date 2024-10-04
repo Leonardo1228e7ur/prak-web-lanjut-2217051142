@@ -5,5 +5,5 @@ use App\Http\Controllers\UserController;
 
 Route::get('/user/create', [UserController::class, 'create']); 
 Route::get('/user/profile', [UserController::class, 'profile']);
-Route::post('/user/store', [UserController::class, 
-'store'])->name('user.store'); 
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+Route::get('/user', [UserController::class, 'index']);

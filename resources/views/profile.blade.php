@@ -13,23 +13,11 @@
         <img src="https://assets.jalantikus.com/assets/cache/560/796/userfiles/2020/10/05/profil-wa-keren-f2308.jpg" alt="Deskripsi Gambar" class="profile-img">
         
         <!-- Informasi Profil -->
-        <table>
-            <tr>
-                <td>Nama</td>
-                <td>:</td>
-                <td><?= $nama ?></td>
-            </tr>
-            <tr>
-                <td>Kelas</td>
-                <td>:</td>
-                <td><?= $kelas ?></td>
-            </tr>
-            <tr>
-                <td>NPM</td>
-                <td>:</td>
-                <td><?= $npm ?></td>
-            </tr>
-        </table>
+       <h1>Profil User</h1>
+       <p>Nama: {{ $nama }}</p>
+       <p>NPM :{{ $npm }}</p>
+       <p>Kelas: {{ $nama_kelas ?? 'Kelas tidak ditemukan' }}</p>
+
     </div>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,20 +9,27 @@ class UserModel extends Model
 {
     use HasFactory;
 
-    // Definisikan nama tabel sebagai string
-    protected $table = 'user'; 
+    protected $table = 'user';
+    protected $guarded = ['id'];
+    protected $fillable = [
+        'nama',
+        'npm',
+        'kelas_id',
+        'foto',
+    ];
 
-    // Gunakan guarded jika ada field yang tidak boleh diisi sembarangan
-    protected $guarded = ['id']; 
-
-    // Definisikan relasi ke model Kelas
-    public function kelas()
-    {
+    public function kelas() {
         return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 
-    public function getUser(){
-        return $this->join('kelas','kelas.id','=','user.kelas_id')->select('user.*','kelas.nama_kelas as nama_kelas')->get();
-        
+    public function getUser($id = null) {
+        if($id != null) {
+            return $this->join('kelas', 'kelas_id', '=', 'user.kelas_id')
+                ->select('user.*', 'kelas.nama_kelas')
+                ->where('user.id', $id)
+                ->first();
+        }
+
+        return $this->join('kelas', 'kelas.id', '=', 'user.kelas_id')->select('user.*', 'kelas.nama_kelas as nama_kelas')->get();
     }
 }

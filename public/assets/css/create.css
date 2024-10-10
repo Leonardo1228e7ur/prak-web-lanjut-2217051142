@@ -2,22 +2,23 @@
 body {
     font-family: Arial, sans-serif;
     background-image: url(https://wallpapercave.com/wp/wp3234817.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
 }
 
 /* Container for Form */
 form {
-   
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
     max-width: 400px;
-    width: 100%; background-color: rgb(12, 198, 105);
-    padding:40px;
+    width: 100%; 
+    background-color: rgb(12, 198, 105);
+    padding: 40px;
     border-radius: 30px;
-    -webkit-box-shadow: 1px 1px 14px 11px #000000; 
     box-shadow: 1px 1px 14px 11px #000000;
 }
 
@@ -79,55 +80,38 @@ button[type="submit"]:hover {
 /* Error Message Styling */
 .error {
     color: red;
-    font-size: 100px; /* Ukuran pesan error diperbesar sedikit */
+    font-size: 16px;
     margin-top: 4px;
-    margin-bottom: -10px; /* Mengurangi jarak agar error lebih dekat dengan input */
+    margin-bottom: -10px;
 }
+
+/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
     background-color: rgb(219, 227, 223);
-    padding:40px;
-    
-   
- }
- 
- table, th, td {
+    padding: 40px;
+}
+
+table, th, td {
     border: 1px solid black;
     padding: 8px;
     text-align: left;
- }
- 
- table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 18px;
-    text-align: left;
- }
- 
- th, td {
-    padding: 12px 15px;
- }
- 
- thead {
+}
+
+thead {
     background-color: #333;
     color: #fff;
- }
- 
- tbody tr:nth-child(even) {
+}
+
+tbody tr:nth-child(even) {
     background-color: #f3f3f3;
- }
- 
- tbody tr:hover {
+}
+
+tbody tr:hover {
     background-color: #ddd;
- }
- 
- table, th, td {
-    border: 1px solid #ddd;
- }
- 
- td:last-child {
+}
+
+td:last-child {
     text-align: center;
- }
- 
+}

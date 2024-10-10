@@ -6,7 +6,8 @@
 <div>
     
     <!-- Form Create User -->
-    <form action="{{ url('/user/store') }}" method="POST">
+    <form class action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+
         @csrf <!-- Token CSRF untuk keamanan form Laravel -->
 
         <!-- Input Nama -->
@@ -42,6 +43,12 @@
             <div class="error">{{ $message }}</div> <!-- Menampilkan error kelas -->
         @enderror
         <br>
+
+        <div class="form-group">
+    <label for="foto">Upload Foto</label>
+    <input type="file" name="foto" class="form-control">
+      </div>
+
 
         <!-- Tombol Submit -->
         <button type="submit">Submit</button>

@@ -1,32 +1,37 @@
 @extends('layouts.app')
 
+@section('title', 'List Pengguna')
+
 @section('content')
-<div class="container">
-   <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-         <tr>
-            <th>ID</th>
-            <th>Nama</th>
-            <th>NPM</th>
-            <th>Kelas</th>
-            <th>Aksi</th>
-         </tr>
-      </thead>
-      <tbody>
-         <?php 
-         foreach ($users as $user) { 
-         ?> 
-            <tr> 
-               <td><?= $user['id'] ?></td> 
-               <td><?= $user['nama'] ?></td> 
-               <td><?= $user['npm'] ?></td> 
-               <td><?= $user['nama_kelas'] ?></td> 
-               <td> <!-- Aksi seperti edit/delete bisa ditempatkan di sini --> </td> 
-            </tr> 
-         <?php 
-         } 
-         ?> 
-      </tbody>
-   </table>
+<div class="my-3">
+    <a href="{{ route('user.create') }}" class="btn btn-success">Tambah Pengguna Baru</a>
+</div>
+
+<div class="container mt-4">
+    <h1 class="text-center">List Data Pengguna</h1><br>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nama</th>
+                <th scope="col">NPM</th>
+                <th scope="col">Kelas</th>
+                <th scope="col">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($users as $user)
+            <tr>
+                <td class="text-center">{{ $user->id }}</td>
+                <td>{{ $user->nama }}</td>
+                <td class="text-center">{{ $user->npm }}</td>
+                <td class="text-center">{{ $user->nama_kelas }}</td>
+                <td class="text-center">
+                    <a href="{{ route('user.show', $user->id) }}" class="btn btn-info btn-sm">Detail</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 @endsection

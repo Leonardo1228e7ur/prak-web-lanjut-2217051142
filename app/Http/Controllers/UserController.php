@@ -74,13 +74,62 @@ class UserController extends Controller {
         return redirect()->to('/user')->with('success', 'User berhasil ditambahkan');
     }
 
-    public function show($id) {
+    public function show($id)
+    {
+        // Mengambil data user berdasarkan ID
         $user = $this->userModel->getUser($id);
-        $data = [
-            'title' => 'Profile',
-            'user' => $user,
-        ];
-
-        return view('profile', $data);
+    
+        // Mengambil data kelas user (misalnya relasi user ke kelas)
+        $kelas = $user->kelas;
+    
+        // Judul halaman
+        $title = 'Detail ' . $user->nama;
+    
+        // Mengirim data ke view 'show'
+        return view('profile', compact('user', 'kelas', 'title'));
     }
+    
+    
+
+    public function edit($id)
+   {
+    // Mencari data user berdasarkan ID, jika tidak ditemukan maka akan throw error 404
+    $user = UserModel::findOrFail($id);
+
+    $kelas = Kelas::all();
+
+    $title = 'Edit User';
+
+    // Mengirim data ke view edit_user
+    return view('edit_user', compact('user', 'kelas', 'title'));
+   }
+
+   public function update(Request $request, $id) {
+    $user = UserModel::findOrFail($id);
+    $user->nama = $request->input('nama');
+    $user->npm = $request->input('npm');
+    $user->kelas_id = $request->input('kelas_id');
+
+    // Logika untuk update foto
+    if($request->hasFile('foto')) {
+        $file = $request->file('foto');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('upload/img'), $filename);
+        $user->foto = $filename;
+    }
+
+    $user->save();
+    return redirect()->to('/user')->with('success', 'User berhasil diupdate');
 }
+
+    public function destroy($id) {
+        $user = UserModel::findOrFail($id);
+        $user->delete();
+        return redirect()->to('/user')->with('success', 'User berhasil dihapus');
+     }
+
+    }
+
+
+
+

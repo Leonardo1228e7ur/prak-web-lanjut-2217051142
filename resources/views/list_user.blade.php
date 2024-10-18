@@ -27,7 +27,18 @@
                 <td class="text-center">{{ $user->npm }}</td>
                 <td class="text-center">{{ $user->nama_kelas }}</td>
                 <td class="text-center">
+                    <!-- Tombol Detail -->
                     <a href="{{ route('user.show', $user->id) }}" class="btn btn-info btn-sm">Detail</a>
+
+                    <!-- Tombol Edit -->
+                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+
+                    <!-- Tombol Delete -->
+                    <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">Delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

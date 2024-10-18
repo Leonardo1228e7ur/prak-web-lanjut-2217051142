@@ -3,20 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>User Profile</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS for additional styling -->
+    <style>
+        body {
+            background-image: url(https://wallpapercave.com/wp/wp3234817.jpg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .profile-card {
+            position: relative;
+            width: 40%;
+            height: 80%;
+            background-color: #000;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .profile-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #ec4899, #a855f7);
+            filter: blur(10px);
+            opacity: 0.75;
+            transition: opacity 0.2s ease-in-out;
+        }
+        .profile-card:hover .profile-bg {
+            opacity: 1;
+        }
+        .profile-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+        }
+        .profile-content img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        .profile-content p {
+            margin-top: 15px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+    </style>
 </head>
-<body class="bg-black">
-    <div class="w-screen h-screen flex justify-center items-center">
-        <div class="relative w-2/5 h-4/5 group">
-            <div class="absolute -inset-1 bg-gradient-to-b from-pink-600 to-purple-600 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-200"></div>
-            <div class="w-full h-full relative bg-black rounded-3xl leading-none flex flex-col justify-center items-center">
-                <img class="h-2/5 rounded-full" src="{{ $user->foto ? asset($user->foto) : 'https://i.pinimg.com/564x/de/4a/19/de4a19f50af28e161dee0ba96d140cdd.jpg'}}" alt="Profile Picture">
-                <p class="text-white font-mono text-3xl mt-14 font-semibold">{{ $user->nama }}</p>
-                <p class="text-white font-mono text-3xl mt-1 font-semibold">{{ $user->nama_kelas ?? 'Kelas tidak ditemukan' }}</p>
-                <p class="text-white font-mono text-3xl mt-1 font-semibold">{{ $user->npm }}</p>
-            </div>
+<body>
+    <div class="profile-card">
+        <div class="profile-bg"></div>
+        <div class="profile-content">
+            <p>
+    <img src=" {{ asset('upload/img/' . $user->foto) }}" alt="foto user" width="100">
+        </p>
+            <p>{{ $user->nama }}</p>
+            <p>{{ $user->nama_kelas ?? 'Kelas tidak ditemukan' }}</p>
+            <p>{{ $user->npm }}</p>
         </div>
     </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
